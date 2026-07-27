@@ -1,0 +1,46 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test-e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Install backend dependencies
+        working-directory: ./backend
+        run: npm ci
+
+      - name: Install frontend dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium
+
+      - name: Start servers
+        run: |
+          cd backend && npm run dev &
+          cd frontend && npm run dev &
+
+      - name: Wait for servers
+        run: |
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:3001/api/event-types > /dev/null 2>&1 && break
+            sleep 2
+          done
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:5173 > /dev/null 2>&1 && break
+            sleep 2
+          done
+
+      - name: Run E2E tests
+        run: npx playwright test

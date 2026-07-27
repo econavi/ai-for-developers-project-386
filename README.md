@@ -4,3 +4,6 @@
 #### Запуск:
 `cd backend && npm run dev` # порт 3001  
 `cd frontend && npm run dev` # порт 5173 → /api прокси на 3001  
+
+#### Деплой:
+https://calendar-call-production.up.railway.app  

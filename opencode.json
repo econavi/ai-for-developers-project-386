@@ -12,6 +12,11 @@
     "chrome-devtools": {
       "command": "npx",
       "args": ["-y", "chrome-devtools-mcp@latest"]
+    },
+    "railway": {
+      "type": "local",
+      "command": "railway",
+      "args": ["mcp"]
     }
   }
 }

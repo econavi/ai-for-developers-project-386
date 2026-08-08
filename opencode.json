@@ -3,20 +3,28 @@
   "mcp": {
     "playwright": {
       "type": "local",
-      "command": "npx",
-      "args": [
+      "command": [
+        "npx",
         "@playwright/mcp@latest"
       ],
       "enabled": true
     },
     "chrome-devtools": {
-      "command": "npx",
-      "args": ["-y", "chrome-devtools-mcp@latest"]
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ],
+      "enabled": true
     },
     "railway": {
       "type": "local",
-      "command": "railway",
-      "args": ["mcp"]
+      "command": [
+        "railway",
+        "mcp"
+      ],
+      "enabled": false
     }
   }
 }

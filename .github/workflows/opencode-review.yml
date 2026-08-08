@@ -17,7 +17,7 @@ jobs:
       issues: write        # Нужно, чтобы оставлять комментарии в PR
     steps:
       - name: Checkout repository
-      - uses: actions/checkout@v6
+        uses: actions/checkout@v6
         with:
           persist-credentials: true
 
@@ -27,7 +27,7 @@ jobs:
           git config --global user.email "opencode-bot@users.noreply.github.com"
 
       - name: Run opencode
-      - uses: anomalyco/opencode/github@latest
+        uses: anomalyco/opencode/github@latest
         env:
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
           GITHUB_TOKEN: ${{ github.token }}
